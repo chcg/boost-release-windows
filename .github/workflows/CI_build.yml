@@ -1,0 +1,52 @@
+name: Continuous Integration
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: windows-2022
+    strategy:
+      fail-fast: false
+      matrix:
+        vc_arch: [32, 64]
+        vc_ver: [14.3]
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v6
+
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: run python build script
+      working-directory: .
+      run: python ./run.py --vc-arch ${{ matrix.vc_arch }} --vc-ver ${{ matrix.vc_ver }}
+      
+    - name: Archive artifacts for x64
+      if: matrix.vc_arch == '64'
+      uses: actions/upload-artifact@v6
+      with:
+          name: static_lib_a64
+          path: D:\RB\boost_1_91_0\lib64-msvc-14.3\libboost_python314-vc143-mt-s-a64-1_90.lib
+
+    - name: Archive artifacts for x64
+      if: matrix.vc_arch == '64'
+      uses: actions/upload-artifact@v6
+      with:
+          name: static_lib_a64_msvc
+          path: D:\RB\bin.v2\boost\bin.v2\libs\python\build\msvc-14.3\release\arm_64\link-static\python-3.14\runtime-link-static\threading-multi\libboost_python314-vc143-mt-s-a64-1_91.lib
+
+    - name: Archive artifacts for x64
+      if: matrix.vc_arch == '64'
+      uses: actions/upload-artifact@v6
+      with:
+          name: static_lib_a64_debug
+          path: D:\RB\boost_1_91_0\lib64-msvc-14.3\libboost_python314-vc143-mt-sgd-a64-1_90.lib
+
+    - name: Archive artifacts for x64
+      if: matrix.vc_arch == '64'
+      uses: actions/upload-artifact@v6
+      with:
+          name: static_lib_a64_debug_msvc
+          path: D:\RB\bin.v2\boost\bin.v2\libs\python\build\msvc-14.3\debug\arm_64\link-static\python-3.14\runtime-link-static\threading-multi\libboost_python314-vc143-mt-sgd-a64-1_91.lib
