@@ -344,7 +344,7 @@ class Builder(object):
         cmd += " --build-type=complete"
         cmd += " toolset=msvc-" + vc
         cmd += " address-model=" + arch 
-        cmd += " architecture=x86"
+        cmd += " architecture=arm"
         cmd += " abi=ms"
         cmd += " stage"
         print("Running: " + cmd, flush=True)

@@ -15,7 +15,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Check out repository code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Start VM
         uses: azure/cli@v2
         with: 
@@ -29,29 +29,29 @@ jobs:
     steps:
       - run: echo "Job has run"
       - name: Check out repository code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Remove user-config.jam
         run: Remove-Item -Path (Join-Path -Path $env:USERPROFILE -ChildPath "user-config.jam") -ErrorAction SilentlyContinue
       - name: Remove build directory
         run: Remove-Item -Path "D:\RB" -Recurse -Force -ErrorAction SilentlyContinue
       - run: python run.py --inline-lib-check
       - name: Versions Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with: 
           name: build-versions
           path: D:/RB/DEPENDENCY_VERSIONS.txt
       - name: Build Logs Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: build-Logs
           path: D:/RB/boost*log.txt
       - name: Full Build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with: 
           name: full-build
           path: D:/RB/boost*msvc-all*.7z
       - name: Installers Build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with: 
           name: installers-build
           path: D:/RB/boost*.exe
