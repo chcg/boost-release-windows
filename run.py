@@ -413,7 +413,7 @@ class Builder(object):
         cmd += " --build-type=complete"
         cmd += " toolset=msvc-" + vc
         cmd += " address-model=" + arch 
-        cmd += " architecture=x86"
+        cmd += " architecture=arm"
         cmd += " stage"
         print("Running: " + cmd)
         subprocess.call(cmd, shell=True)
