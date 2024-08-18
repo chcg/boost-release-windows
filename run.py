@@ -23,8 +23,8 @@ MINOR_VERSION = "0"
 #TYPE = "master-snapshot"
 #TYPE = "beta-rc"
 #TYPE = "beta" # Never used, build Beta RC
-TYPE = "rc"
-#TYPE = "release" # Never used, build RC
+#TYPE = "rc"
+TYPE = "release" # Never used, build RC
 REPO = "jfrog"
 BETA = 1
 RC = 1
@@ -422,7 +422,7 @@ class Builder(object):
         cmd += " --build-type=complete"
         cmd += " toolset=msvc-" + vc
         cmd += " address-model=" + arch 
-        cmd += " architecture=x86"
+        cmd += " architecture=arm"
         cmd += " stage"
         print("Running: " + cmd)
         subprocess.call(cmd, shell=True)
