@@ -21,13 +21,13 @@ import repo_paths
 VERSION = "87"
 MINOR_VERSION = "0"
 #TYPE = "master-snapshot"
-TYPE = "beta-rc"
+#TYPE = "beta-rc"
 #TYPE = "beta" # Never used, build Beta RC
-#TYPE = "rc"
+TYPE = "rc"
 #TYPE = "release" # Never used, build RC
 REPO = "archives"
 BETA = 1
-RC = 3
+RC = 1
 
 release_extension = "tar.bz2"
 
